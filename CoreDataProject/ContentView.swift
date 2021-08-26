@@ -13,8 +13,8 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            FilteredList(filter: lastNameFilter, property: \Singer.firstName!) { object in
-                Text(object.wrappedFirstName)
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
+                Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
             
             Button("Add Examples") {
