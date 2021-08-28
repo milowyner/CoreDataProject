@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            FilteredList(filterKey: "lastName", filterPredicate: "BEGINSWITH", filterValue: lastNameFilter, sortDescriptors: [NSSortDescriptor(key: "firstName", ascending: true)]) { (singer: Singer) in
+            FilteredList(filterKey: "lastName", filterPredicate: .beginsWidth, filterValue: lastNameFilter, sortDescriptors: [NSSortDescriptor(key: "firstName", ascending: true)]) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
             
