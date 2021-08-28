@@ -13,8 +13,8 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     var objects: FetchedResults<T> { fetchRequest.wrappedValue }
     let content: (T) -> Content
     
-    init(filterKey: String?, filterValue: String?, sortDescriptors: [NSSortDescriptor] = [], @ViewBuilder content: @escaping (T) -> Content) {
-        let predicate = filterValue != nil && filterKey != nil ? NSPredicate(format: "%K BEGINSWITH %@", filterKey!, filterValue!) : nil
+    init(filterKey: String?, filterPredicate: String?, filterValue: String?, sortDescriptors: [NSSortDescriptor] = [], @ViewBuilder content: @escaping (T) -> Content) {
+        let predicate = filterValue != nil && filterKey != nil && filterPredicate != nil ? NSPredicate(format: "%K \(filterPredicate!) %@", filterKey!, filterValue!) : nil
         fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: sortDescriptors, predicate: predicate)
         self.content = content
     }
